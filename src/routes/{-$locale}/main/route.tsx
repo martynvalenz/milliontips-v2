@@ -21,15 +21,13 @@ export const Route = createFileRoute("/{-$locale}/main")({
 		// Return context to child routes
 		return { user, selectedWorkspace };
 	},
-	component: RouteComponent,
+	component: MainLayout,
 });
 
-function RouteComponent() {
+function MainLayout() {
 	const { selectedWorkspace } = Route.useRouteContext();
 	return (
-		<WorkspaceProvider
-			initialWorkspaceId={selectedWorkspace.workspaceId || null}
-		>
+		<WorkspaceProvider initialWorkspace={selectedWorkspace}>
 			<Outlet />
 		</WorkspaceProvider>
 	);
