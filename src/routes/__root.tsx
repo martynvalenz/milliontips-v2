@@ -65,7 +65,7 @@ function RootDocument({ children }: { children: ReactNode }) {
 				{/** biome-ignore lint/security/noDangerouslySetInnerHtml: For theme management only */}
 				<script dangerouslySetInnerHTML={{ __html: themeScript }} />
 			</head>
-			<body>
+			<body suppressHydrationWarning>
 				<ThemeProvider>{children}</ThemeProvider>
 				<TanStackDevtools
 					config={{
