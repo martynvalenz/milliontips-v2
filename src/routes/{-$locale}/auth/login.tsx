@@ -9,12 +9,18 @@ import {
 } from "@/components/ui/card";
 import LoginForm from "@/modules/auth/ui/LoginForm";
 import SocialLogin from "@/modules/auth/ui/SocialLogin";
+import { getSeo } from "@/modules/core/functions/getSeo";
 
 export const Route = createFileRoute("/{-$locale}/auth/login")({
 	loader: ({ params }) => {
 		const locale = params.locale;
 		return locale;
 	},
+	head: ({ params }) => ({
+		meta: getSeo({
+			title: params.locale === "es" ? "Iniciar sesión" : "Login",
+		}),
+	}),
 	component: RouteComponent,
 });
 
