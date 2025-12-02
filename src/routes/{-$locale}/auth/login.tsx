@@ -11,11 +11,11 @@ import LoginForm from "@/modules/auth/ui/LoginForm";
 import SocialLogin from "@/modules/auth/ui/SocialLogin";
 
 export const Route = createFileRoute("/{-$locale}/auth/login")({
-	component: RouteComponent,
 	loader: ({ params }) => {
 		const locale = params.locale;
 		return locale;
 	},
+	component: RouteComponent,
 });
 
 function RouteComponent() {

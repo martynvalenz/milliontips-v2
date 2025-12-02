@@ -1,18 +1,72 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useTranslation } from "react-i18next";
-import { LocaleLink } from "@/components/shared/LocaleLink";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import TrackerComponent from "@/components/shared/TrackerComponent";
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card";
+import { authServerFunction } from "@/modules/auth/server/authServerFunction";
+import LoginForm from "@/modules/auth/ui/LoginForm";
+import SocialLogin from "@/modules/auth/ui/SocialLogin";
 
 export const Route = createFileRoute("/{-$locale}/")({
+	beforeLoad: async () => {
+		// Call the function (which runs through the middleware)
+		const { user, session } = await authServerFunction();
+
+		// Handle the redirect logic here
+		if (user || session) {
+			throw redirect({
+				to: "/{-$locale}/main",
+			});
+		}
+	},
+	loader: ({ params }) => {
+		const locale = params.locale;
+		return locale;
+	},
 	component: Home,
 });
 
 function Home() {
-	const { t } = useTranslation();
+	const params = Route.useParams();
+	const locale = params.locale;
 
 	return (
-		<div className="p-2">
-			<h3>{t("title")}</h3>
-			<LocaleLink to="/{-$locale}/auth/login">Login</LocaleLink>
-		</div>
+		<Card className="w-full max-w-md">
+			<CardHeader className="bg-card">
+				<CardTitle className="text-xl">
+					{locale === "es" ? "Iniciar sesión" : "Login"}
+				</CardTitle>
+				<CardDescription>
+					{locale === "es"
+						? "Inicia sesión con tu cuenta"
+						: "Login with your account"}
+				</CardDescription>
+			</CardHeader>
+			<CardContent className="flex flex-col gap-4">
+				<SocialLogin />
+				<div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
+					<span className="relative z-10 bg-card px-2 text-muted-foreground">
+						{locale === "es" ? "o" : "or"}
+					</span>
+				</div>
+				<LoginForm />
+				<TrackerComponent event="home-page" />
+				{/* <div className="mt-4 text-center text-sm">
+					{locale === "es"
+						? "¿No tienes una cuenta?"
+						: "Don't have an account?"}{" "}
+					<Link
+						to="/{-$locale}/auth/register"
+						className="font-medium text-app-800 underline dark:text-slate-200"
+					>
+						{locale === "es" ? "Regístrate" : "Register"}
+					</Link>
+				</div> */}
+			</CardContent>
+		</Card>
 	);
 }

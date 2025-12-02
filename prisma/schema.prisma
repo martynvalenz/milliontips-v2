@@ -39,9 +39,10 @@ model Workspace {
   updatedAt DateTime  @updatedAt @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
 
-  EventTracker   EventTracker[]
-  User           User[]
-  workspaceUsers WorkspaceUser[]
+  EventTracker       EventTracker[]
+  User               User[]
+  workspaceUsers     WorkspaceUser[]
+  selectedWorkspaces SelectedWorkspace[]
 
   @@index([domain])
   @@index([isActive])
@@ -97,9 +98,10 @@ model User {
   accounts        Account[]
   EventTracker    EventTracker[]
 
-  workspaceUsers WorkspaceUser[]
-  workspace      Workspace?      @relation(fields: [workspaceId], references: [id])
-  workspaceId    String?
+  workspaceUsers     WorkspaceUser[]
+  workspace          Workspace?          @relation(fields: [workspaceId], references: [id])
+  workspaceId        String?
+  selectedWorkspaces SelectedWorkspace[]
 
   @@unique([email])
   @@index([email])
@@ -174,4 +176,18 @@ model WorkspaceUser {
   @@index([isActive])
   @@index([userId])
   @@map("workspace_users")
+}
+
+model SelectedWorkspace {
+  id          String @id @default(ulid())
+  workspaceId String @map("workspace_id") @db.VarChar(40)
+  userId      String @map("user_id") @db.VarChar(40)
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, workspaceId])
+  @@index([workspaceId])
+  @@index([userId])
+  @@map("selected_workspaces")
 }
