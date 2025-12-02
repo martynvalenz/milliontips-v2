@@ -15,6 +15,23 @@ interface MyRouterContext {
 	queryClient: QueryClient;
 }
 
+// 1. Define the script as a string to avoid hydration mismatches
+// This script checks local storage and system preferences immediately
+const themeScript = `
+  (function() {
+    try {
+      var localTheme = localStorage.getItem('theme');
+      var supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (localTheme === 'dark' || (!localTheme && supportDarkMode)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } catch (e) {}
+  })();
+`;
+
 export const Route = createRootRouteWithContext<MyRouterContext>()({
 	head: () => ({
 		meta: [
@@ -42,9 +59,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: { children: ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<head>
 				<HeadContent />
+				{/** biome-ignore lint/security/noDangerouslySetInnerHtml: For theme management only */}
+				<script dangerouslySetInnerHTML={{ __html: themeScript }} />
 			</head>
 			<body>
 				<ThemeProvider>{children}</ThemeProvider>

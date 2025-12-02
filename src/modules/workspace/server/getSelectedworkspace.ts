@@ -11,24 +11,9 @@ export const getSelectedWorkspace = createServerFn()
 			},
 			select: {
 				workspaceId: true,
-				workspace: {
-					select: {
-						name: true,
-						workspaceUsers: {
-							where: {
-								userId: context.user.id,
-							},
-							select: {
-								role: true,
-							},
-						},
-					},
-				},
 			},
 		});
 		return {
 			workspaceId: selectedWorkspace?.workspaceId,
-			name: selectedWorkspace?.workspace.name,
-			role: selectedWorkspace?.workspace.workspaceUsers[0].role,
 		};
 	});

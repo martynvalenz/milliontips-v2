@@ -1,48 +1,35 @@
 // src/modules/workspace/context/workspace.context.tsx
 
-import { createContext, type ReactNode, useContext, useMemo } from "react";
-import type { WorkspaceUserRole } from "@/generated/prisma/enums";
+import { createContext, type ReactNode, useContext, useState } from "react";
 
 // 1. Define the shape of your Workspace object (or import it from your DB types)
 type Workspace = {
-	workspaceId: string;
-	name: string;
-	role: WorkspaceUserRole;
+	selectedWorkspace: string | null;
+	setSelectedWorkspace: (workspaceId: string | null) => void;
 };
 
-interface WorkspaceContextType {
-	workspace: Workspace | null;
-	isLoading: boolean;
-}
-
 // 2. Create the Context
-const WorkspaceContext = createContext<WorkspaceContextType | undefined>(
-	undefined,
-);
+const WorkspaceContext = createContext<Workspace | undefined>(undefined);
 
 // 3. Create the Provider
-// We accept 'initialWorkspace' which comes from the Route Loader/Context
+// We accept 'initialWorkspaceId' which comes from the Route Loader/Context
 export function WorkspaceProvider({
 	children,
-	initialWorkspace,
+	initialWorkspaceId,
 }: {
 	children: ReactNode;
-	initialWorkspace: Workspace | null;
+	initialWorkspaceId: string | null;
 }) {
-	// In a URL-driven app, we usually don't need 'useState' here.
-	// We trust the Router to pass us the correct data via props.
-	// When the URL changes -> Loader runs -> Prop updates -> Context updates.
-
-	const value = useMemo(
-		() => ({
-			workspace: initialWorkspace,
-			isLoading: false, // You could hook this up to router.state.isLoading if desired
-		}),
-		[initialWorkspace],
-	);
+	const [selectedWorkspaceId, setSelectedWorkspaceId] =
+		useState(initialWorkspaceId);
 
 	return (
-		<WorkspaceContext.Provider value={value}>
+		<WorkspaceContext.Provider
+			value={{
+				selectedWorkspace: selectedWorkspaceId,
+				setSelectedWorkspace: setSelectedWorkspaceId,
+			}}
+		>
 			{children}
 		</WorkspaceContext.Provider>
 	);

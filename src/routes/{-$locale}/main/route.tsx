@@ -27,7 +27,9 @@ export const Route = createFileRoute("/{-$locale}/main")({
 function MainLayout() {
 	const { selectedWorkspace } = Route.useRouteContext();
 	return (
-		<WorkspaceProvider initialWorkspace={selectedWorkspace}>
+		<WorkspaceProvider
+			initialWorkspaceId={selectedWorkspace.workspaceId || null}
+		>
 			<Outlet />
 		</WorkspaceProvider>
 	);
