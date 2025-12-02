@@ -1,3 +1,4 @@
+import { currencySeed } from '@/generated/data/currency.seed.js'
 import { PrismaClient } from '../src/generated/prisma/client.js'
 
 import { PrismaPg } from '@prisma/adapter-pg'
@@ -11,19 +12,19 @@ const prisma = new PrismaClient({ adapter })
 async function main() {
   console.log('🌱 Seeding database...')
 
-  // Clear existing todos
-  await prisma.todo.deleteMany()
+  await prisma.currency.deleteMany();
+  await prisma.workspace.deleteMany();
+  await prisma.eventTracker.deleteMany();
 
-  // Create example todos
-  const todos = await prisma.todo.createMany({
-    data: [
-      { title: 'Buy groceries' },
-      { title: 'Read a book' },
-      { title: 'Workout' },
-    ],
-  })
+  await Promise.all(
+    currencySeed.map(async (currency) => {
+        await prisma.currency.create({
+          data: currency,
+        });
+      }),
+    );
 
-  console.log(`✅ Created ${todos.count} todos`)
+  console.log(`✅ Created ${currencySeed.length} currencies`)
 }
 
 main()
