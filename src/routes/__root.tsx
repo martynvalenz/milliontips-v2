@@ -7,7 +7,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import type { ReactNode } from "react";
-import Header from "../components/Header";
+import { ThemeProvider } from "@/providers/theme-provider";
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
 
@@ -26,7 +26,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "TanStack Start Starter",
+				title: "Milliontips",
 			},
 		],
 		links: [
@@ -47,8 +47,7 @@ function RootDocument({ children }: { children: ReactNode }) {
 				<HeadContent />
 			</head>
 			<body>
-				<Header />
-				{children}
+				<ThemeProvider>{children}</ThemeProvider>
 				<TanStackDevtools
 					config={{
 						position: "bottom-right",

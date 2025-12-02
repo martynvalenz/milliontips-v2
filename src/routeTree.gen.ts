@@ -9,25 +9,51 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as Char123LocaleChar125RouteRouteImport } from './routes/{-$locale}/route'
+import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$locale}/index'
+import { Route as Char123LocaleChar125MainRouteImport } from './routes/{-$locale}/main'
+import { Route as Char123LocaleChar125AuthRouteImport } from './routes/{-$locale}/auth'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
 import { Route as DemoPrismaRouteImport } from './routes/demo/prisma'
+import { Route as Char123LocaleChar125AuthLoginRouteImport } from './routes/{-$locale}/auth/login'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
 import { Route as DemoFormSimpleRouteImport } from './routes/demo/form.simple'
 import { Route as DemoFormAddressRouteImport } from './routes/demo/form.address'
 import { Route as DemoApiTqTodosRouteImport } from './routes/demo/api.tq-todos'
 import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as DemoStartSsrIndexRouteImport } from './routes/demo/start.ssr.index'
 import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr.spa-mode'
 import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
 import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
+import { Route as Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRouteImport } from './routes/{-$locale}/main/workspaces/$workspaceId/index'
+import { Route as Char123LocaleChar125MainWorkspacesWorkspaceIdWorkspaceIdRouteImport } from './routes/{-$locale}/main/workspaces/$workspaceId/$workspaceId'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const Char123LocaleChar125RouteRoute =
+  Char123LocaleChar125RouteRouteImport.update({
+    id: '/{-$locale}',
+    path: '/{-$locale}',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Char123LocaleChar125IndexRoute =
+  Char123LocaleChar125IndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125MainRoute =
+  Char123LocaleChar125MainRouteImport.update({
+    id: '/main',
+    path: '/main',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125AuthRoute =
+  Char123LocaleChar125AuthRouteImport.update({
+    id: '/auth',
+    path: '/auth',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
 const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
   id: '/demo/tanstack-query',
   path: '/demo/tanstack-query',
@@ -38,6 +64,12 @@ const DemoPrismaRoute = DemoPrismaRouteImport.update({
   path: '/demo/prisma',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Char123LocaleChar125AuthLoginRoute =
+  Char123LocaleChar125AuthLoginRouteImport.update({
+    id: '/login',
+    path: '/login',
+    getParentRoute: () => Char123LocaleChar125AuthRoute,
+  } as any)
 const DemoStartServerFuncsRoute = DemoStartServerFuncsRouteImport.update({
   id: '/demo/start/server-funcs',
   path: '/demo/start/server-funcs',
@@ -68,6 +100,11 @@ const DemoApiNamesRoute = DemoApiNamesRouteImport.update({
   path: '/demo/api/names',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DemoStartSsrIndexRoute = DemoStartSsrIndexRouteImport.update({
   id: '/demo/start/ssr/',
   path: '/demo/start/ssr/',
@@ -88,105 +125,158 @@ const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
   path: '/demo/start/ssr/data-only',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute =
+  Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRouteImport.update({
+    id: '/workspaces/$workspaceId/',
+    path: '/workspaces/$workspaceId/',
+    getParentRoute: () => Char123LocaleChar125MainRoute,
+  } as any)
+const Char123LocaleChar125MainWorkspacesWorkspaceIdWorkspaceIdRoute =
+  Char123LocaleChar125MainWorkspacesWorkspaceIdWorkspaceIdRouteImport.update({
+    id: '/workspaces/$workspaceId/$workspaceId',
+    path: '/workspaces/$workspaceId/$workspaceId',
+    getParentRoute: () => Char123LocaleChar125MainRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
   '/demo/prisma': typeof DemoPrismaRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/{-$locale}/auth': typeof Char123LocaleChar125AuthRouteWithChildren
+  '/{-$locale}/main': typeof Char123LocaleChar125MainRouteWithChildren
+  '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/{-$locale}/auth/login': typeof Char123LocaleChar125AuthLoginRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
   '/demo/start/ssr': typeof DemoStartSsrIndexRoute
+  '/{-$locale}/main/workspaces/$workspaceId/$workspaceId': typeof Char123LocaleChar125MainWorkspacesWorkspaceIdWorkspaceIdRoute
+  '/{-$locale}/main/workspaces/$workspaceId': typeof Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/demo/prisma': typeof DemoPrismaRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/{-$locale}/auth': typeof Char123LocaleChar125AuthRouteWithChildren
+  '/{-$locale}/main': typeof Char123LocaleChar125MainRouteWithChildren
+  '/{-$locale}': typeof Char123LocaleChar125IndexRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/{-$locale}/auth/login': typeof Char123LocaleChar125AuthLoginRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
   '/demo/start/ssr': typeof DemoStartSsrIndexRoute
+  '/{-$locale}/main/workspaces/$workspaceId/$workspaceId': typeof Char123LocaleChar125MainWorkspacesWorkspaceIdWorkspaceIdRoute
+  '/{-$locale}/main/workspaces/$workspaceId': typeof Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
   '/demo/prisma': typeof DemoPrismaRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/{-$locale}/auth': typeof Char123LocaleChar125AuthRouteWithChildren
+  '/{-$locale}/main': typeof Char123LocaleChar125MainRouteWithChildren
+  '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/{-$locale}/auth/login': typeof Char123LocaleChar125AuthLoginRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
   '/demo/start/ssr/': typeof DemoStartSsrIndexRoute
+  '/{-$locale}/main/workspaces/$workspaceId/$workspaceId': typeof Char123LocaleChar125MainWorkspacesWorkspaceIdWorkspaceIdRoute
+  '/{-$locale}/main/workspaces/$workspaceId/': typeof Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
+    | '/{-$locale}'
     | '/demo/prisma'
     | '/demo/tanstack-query'
+    | '/{-$locale}/auth'
+    | '/{-$locale}/main'
+    | '/{-$locale}/'
+    | '/api/auth/$'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
     | '/demo/form/address'
     | '/demo/form/simple'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
+    | '/{-$locale}/auth/login'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
     | '/demo/start/ssr'
+    | '/{-$locale}/main/workspaces/$workspaceId/$workspaceId'
+    | '/{-$locale}/main/workspaces/$workspaceId'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/demo/prisma'
     | '/demo/tanstack-query'
+    | '/{-$locale}/auth'
+    | '/{-$locale}/main'
+    | '/{-$locale}'
+    | '/api/auth/$'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
     | '/demo/form/address'
     | '/demo/form/simple'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
+    | '/{-$locale}/auth/login'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
     | '/demo/start/ssr'
+    | '/{-$locale}/main/workspaces/$workspaceId/$workspaceId'
+    | '/{-$locale}/main/workspaces/$workspaceId'
   id:
     | '__root__'
-    | '/'
+    | '/{-$locale}'
     | '/demo/prisma'
     | '/demo/tanstack-query'
+    | '/{-$locale}/auth'
+    | '/{-$locale}/main'
+    | '/{-$locale}/'
+    | '/api/auth/$'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
     | '/demo/form/address'
     | '/demo/form/simple'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
+    | '/{-$locale}/auth/login'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
     | '/demo/start/ssr/'
+    | '/{-$locale}/main/workspaces/$workspaceId/$workspaceId'
+    | '/{-$locale}/main/workspaces/$workspaceId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  Char123LocaleChar125RouteRoute: typeof Char123LocaleChar125RouteRouteWithChildren
   DemoPrismaRoute: typeof DemoPrismaRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   DemoApiNamesRoute: typeof DemoApiNamesRoute
   DemoApiTqTodosRoute: typeof DemoApiTqTodosRoute
   DemoFormAddressRoute: typeof DemoFormAddressRoute
@@ -201,12 +291,33 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/{-$locale}': {
+      id: '/{-$locale}'
+      path: '/{-$locale}'
+      fullPath: '/{-$locale}'
+      preLoaderRoute: typeof Char123LocaleChar125RouteRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/{-$locale}/': {
+      id: '/{-$locale}/'
+      path: '/'
+      fullPath: '/{-$locale}/'
+      preLoaderRoute: typeof Char123LocaleChar125IndexRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/main': {
+      id: '/{-$locale}/main'
+      path: '/main'
+      fullPath: '/{-$locale}/main'
+      preLoaderRoute: typeof Char123LocaleChar125MainRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/auth': {
+      id: '/{-$locale}/auth'
+      path: '/auth'
+      fullPath: '/{-$locale}/auth'
+      preLoaderRoute: typeof Char123LocaleChar125AuthRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
     }
     '/demo/tanstack-query': {
       id: '/demo/tanstack-query'
@@ -221,6 +332,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/demo/prisma'
       preLoaderRoute: typeof DemoPrismaRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/{-$locale}/auth/login': {
+      id: '/{-$locale}/auth/login'
+      path: '/login'
+      fullPath: '/{-$locale}/auth/login'
+      preLoaderRoute: typeof Char123LocaleChar125AuthLoginRouteImport
+      parentRoute: typeof Char123LocaleChar125AuthRoute
     }
     '/demo/start/server-funcs': {
       id: '/demo/start/server-funcs'
@@ -264,6 +382,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoApiNamesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/demo/start/ssr/': {
       id: '/demo/start/ssr/'
       path: '/demo/start/ssr'
@@ -292,13 +417,78 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoStartSsrDataOnlyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/{-$locale}/main/workspaces/$workspaceId/': {
+      id: '/{-$locale}/main/workspaces/$workspaceId/'
+      path: '/workspaces/$workspaceId'
+      fullPath: '/{-$locale}/main/workspaces/$workspaceId'
+      preLoaderRoute: typeof Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125MainRoute
+    }
+    '/{-$locale}/main/workspaces/$workspaceId/$workspaceId': {
+      id: '/{-$locale}/main/workspaces/$workspaceId/$workspaceId'
+      path: '/workspaces/$workspaceId/$workspaceId'
+      fullPath: '/{-$locale}/main/workspaces/$workspaceId/$workspaceId'
+      preLoaderRoute: typeof Char123LocaleChar125MainWorkspacesWorkspaceIdWorkspaceIdRouteImport
+      parentRoute: typeof Char123LocaleChar125MainRoute
+    }
   }
 }
 
+interface Char123LocaleChar125AuthRouteChildren {
+  Char123LocaleChar125AuthLoginRoute: typeof Char123LocaleChar125AuthLoginRoute
+}
+
+const Char123LocaleChar125AuthRouteChildren: Char123LocaleChar125AuthRouteChildren =
+  {
+    Char123LocaleChar125AuthLoginRoute: Char123LocaleChar125AuthLoginRoute,
+  }
+
+const Char123LocaleChar125AuthRouteWithChildren =
+  Char123LocaleChar125AuthRoute._addFileChildren(
+    Char123LocaleChar125AuthRouteChildren,
+  )
+
+interface Char123LocaleChar125MainRouteChildren {
+  Char123LocaleChar125MainWorkspacesWorkspaceIdWorkspaceIdRoute: typeof Char123LocaleChar125MainWorkspacesWorkspaceIdWorkspaceIdRoute
+  Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute: typeof Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute
+}
+
+const Char123LocaleChar125MainRouteChildren: Char123LocaleChar125MainRouteChildren =
+  {
+    Char123LocaleChar125MainWorkspacesWorkspaceIdWorkspaceIdRoute:
+      Char123LocaleChar125MainWorkspacesWorkspaceIdWorkspaceIdRoute,
+    Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute:
+      Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute,
+  }
+
+const Char123LocaleChar125MainRouteWithChildren =
+  Char123LocaleChar125MainRoute._addFileChildren(
+    Char123LocaleChar125MainRouteChildren,
+  )
+
+interface Char123LocaleChar125RouteRouteChildren {
+  Char123LocaleChar125AuthRoute: typeof Char123LocaleChar125AuthRouteWithChildren
+  Char123LocaleChar125MainRoute: typeof Char123LocaleChar125MainRouteWithChildren
+  Char123LocaleChar125IndexRoute: typeof Char123LocaleChar125IndexRoute
+}
+
+const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChildren =
+  {
+    Char123LocaleChar125AuthRoute: Char123LocaleChar125AuthRouteWithChildren,
+    Char123LocaleChar125MainRoute: Char123LocaleChar125MainRouteWithChildren,
+    Char123LocaleChar125IndexRoute: Char123LocaleChar125IndexRoute,
+  }
+
+const Char123LocaleChar125RouteRouteWithChildren =
+  Char123LocaleChar125RouteRoute._addFileChildren(
+    Char123LocaleChar125RouteRouteChildren,
+  )
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  Char123LocaleChar125RouteRoute: Char123LocaleChar125RouteRouteWithChildren,
   DemoPrismaRoute: DemoPrismaRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
   DemoApiNamesRoute: DemoApiNamesRoute,
   DemoApiTqTodosRoute: DemoApiTqTodosRoute,
   DemoFormAddressRoute: DemoFormAddressRoute,
