@@ -16,6 +16,8 @@ export const Route = createFileRoute("/{-$locale}/")({
 		// Call the function (which runs through the middleware)
 		const { user, session } = await authServerFunction();
 
+		console.log(user, session);
+
 		// Handle the redirect logic here
 		if (user || session) {
 			throw redirect({
