@@ -5,6 +5,11 @@ import { authMiddleware } from "@/lib/auth-middleware";
 export const getSelectedWorkspace = createServerFn()
 	.middleware([authMiddleware])
 	.handler(async ({ context }) => {
+		if (!context?.user?.id) {
+			return {
+				workspaceId: null,
+			};
+		}
 		const selectedWorkspace = await prisma.selectedWorkspace.findFirst({
 			where: {
 				userId: context.user.id,
