@@ -18,7 +18,8 @@ const TrackerComponent = ({
 	const lang = useLocale();
 	const workspaceId = useWorkspaceId();
 
-	const pathname = useLocation().pathname;
+	const location = useLocation();
+	const pathname = location.pathname;
 	const { platform, userAgent, city, country } = useDeviceStore();
 
 	useEffect(() => {

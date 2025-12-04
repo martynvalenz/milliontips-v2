@@ -36,7 +36,7 @@ export function WorkspaceProvider({
 }
 
 // 4. Create a custom Hook for easy consumption
-export function useWorkspace() {
+export function useWorkspaceContext() {
 	const context = useContext(WorkspaceContext);
 	if (context === undefined) {
 		throw new Error("useWorkspace must be used within a WorkspaceProvider");

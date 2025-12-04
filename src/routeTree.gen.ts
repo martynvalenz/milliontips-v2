@@ -24,13 +24,15 @@ import { Route as DemoFormAddressRouteImport } from './routes/demo/form.address'
 import { Route as DemoApiTqTodosRouteImport } from './routes/demo/api.tq-todos'
 import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as Char123LocaleChar125MainWorkspacesRouteRouteImport } from './routes/{-$locale}/main/workspaces/route'
 import { Route as Char123LocaleChar125MainLayoutRouteRouteImport } from './routes/{-$locale}/main/layout/route'
 import { Route as DemoStartSsrIndexRouteImport } from './routes/demo/start.ssr.index'
 import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr.spa-mode'
 import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
 import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
+import { Route as Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRouteImport } from './routes/{-$locale}/main/workspaces/$workspaceId/index'
 import { Route as Char123LocaleChar125MainLayoutUserIndexRouteImport } from './routes/{-$locale}/main/layout/user/index'
-import { Route as Char123LocaleChar125MainLayoutWorkspacesWorkspaceIdIndexRouteImport } from './routes/{-$locale}/main/layout/workspaces/$workspaceId/index'
+import { Route as Char123LocaleChar125MainWorkspacesWorkspaceIdAccountsRouteImport } from './routes/{-$locale}/main/workspaces/$workspaceId/accounts'
 
 const Char123LocaleChar125RouteRoute =
   Char123LocaleChar125RouteRouteImport.update({
@@ -113,6 +115,12 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Char123LocaleChar125MainWorkspacesRouteRoute =
+  Char123LocaleChar125MainWorkspacesRouteRouteImport.update({
+    id: '/workspaces',
+    path: '/workspaces',
+    getParentRoute: () => Char123LocaleChar125MainRouteRoute,
+  } as any)
 const Char123LocaleChar125MainLayoutRouteRoute =
   Char123LocaleChar125MainLayoutRouteRouteImport.update({
     id: '/layout',
@@ -139,17 +147,23 @@ const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
   path: '/demo/start/ssr/data-only',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute =
+  Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRouteImport.update({
+    id: '/$workspaceId/',
+    path: '/$workspaceId/',
+    getParentRoute: () => Char123LocaleChar125MainWorkspacesRouteRoute,
+  } as any)
 const Char123LocaleChar125MainLayoutUserIndexRoute =
   Char123LocaleChar125MainLayoutUserIndexRouteImport.update({
     id: '/user/',
     path: '/user/',
     getParentRoute: () => Char123LocaleChar125MainLayoutRouteRoute,
   } as any)
-const Char123LocaleChar125MainLayoutWorkspacesWorkspaceIdIndexRoute =
-  Char123LocaleChar125MainLayoutWorkspacesWorkspaceIdIndexRouteImport.update({
-    id: '/workspaces/$workspaceId/',
-    path: '/workspaces/$workspaceId/',
-    getParentRoute: () => Char123LocaleChar125MainLayoutRouteRoute,
+const Char123LocaleChar125MainWorkspacesWorkspaceIdAccountsRoute =
+  Char123LocaleChar125MainWorkspacesWorkspaceIdAccountsRouteImport.update({
+    id: '/$workspaceId/accounts',
+    path: '/$workspaceId/accounts',
+    getParentRoute: () => Char123LocaleChar125MainWorkspacesRouteRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -160,6 +174,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/auth': typeof Char123LocaleChar125AuthRouteWithChildren
   '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
   '/{-$locale}/main/layout': typeof Char123LocaleChar125MainLayoutRouteRouteWithChildren
+  '/{-$locale}/main/workspaces': typeof Char123LocaleChar125MainWorkspacesRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
@@ -173,8 +188,9 @@ export interface FileRoutesByFullPath {
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
   '/demo/start/ssr': typeof DemoStartSsrIndexRoute
+  '/{-$locale}/main/workspaces/$workspaceId/accounts': typeof Char123LocaleChar125MainWorkspacesWorkspaceIdAccountsRoute
   '/{-$locale}/main/layout/user': typeof Char123LocaleChar125MainLayoutUserIndexRoute
-  '/{-$locale}/main/layout/workspaces/$workspaceId': typeof Char123LocaleChar125MainLayoutWorkspacesWorkspaceIdIndexRoute
+  '/{-$locale}/main/workspaces/$workspaceId': typeof Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/demo/prisma': typeof DemoPrismaRoute
@@ -182,6 +198,7 @@ export interface FileRoutesByTo {
   '/{-$locale}/auth': typeof Char123LocaleChar125AuthRouteWithChildren
   '/{-$locale}': typeof Char123LocaleChar125IndexRoute
   '/{-$locale}/main/layout': typeof Char123LocaleChar125MainLayoutRouteRouteWithChildren
+  '/{-$locale}/main/workspaces': typeof Char123LocaleChar125MainWorkspacesRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
@@ -195,8 +212,9 @@ export interface FileRoutesByTo {
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
   '/demo/start/ssr': typeof DemoStartSsrIndexRoute
+  '/{-$locale}/main/workspaces/$workspaceId/accounts': typeof Char123LocaleChar125MainWorkspacesWorkspaceIdAccountsRoute
   '/{-$locale}/main/layout/user': typeof Char123LocaleChar125MainLayoutUserIndexRoute
-  '/{-$locale}/main/layout/workspaces/$workspaceId': typeof Char123LocaleChar125MainLayoutWorkspacesWorkspaceIdIndexRoute
+  '/{-$locale}/main/workspaces/$workspaceId': typeof Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -207,6 +225,7 @@ export interface FileRoutesById {
   '/{-$locale}/auth': typeof Char123LocaleChar125AuthRouteWithChildren
   '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
   '/{-$locale}/main/layout': typeof Char123LocaleChar125MainLayoutRouteRouteWithChildren
+  '/{-$locale}/main/workspaces': typeof Char123LocaleChar125MainWorkspacesRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
@@ -220,8 +239,9 @@ export interface FileRoutesById {
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
   '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
   '/demo/start/ssr/': typeof DemoStartSsrIndexRoute
+  '/{-$locale}/main/workspaces/$workspaceId/accounts': typeof Char123LocaleChar125MainWorkspacesWorkspaceIdAccountsRoute
   '/{-$locale}/main/layout/user/': typeof Char123LocaleChar125MainLayoutUserIndexRoute
-  '/{-$locale}/main/layout/workspaces/$workspaceId/': typeof Char123LocaleChar125MainLayoutWorkspacesWorkspaceIdIndexRoute
+  '/{-$locale}/main/workspaces/$workspaceId/': typeof Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -233,6 +253,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/auth'
     | '/{-$locale}/'
     | '/{-$locale}/main/layout'
+    | '/{-$locale}/main/workspaces'
     | '/api/auth/$'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
@@ -246,8 +267,9 @@ export interface FileRouteTypes {
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
     | '/demo/start/ssr'
+    | '/{-$locale}/main/workspaces/$workspaceId/accounts'
     | '/{-$locale}/main/layout/user'
-    | '/{-$locale}/main/layout/workspaces/$workspaceId'
+    | '/{-$locale}/main/workspaces/$workspaceId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/demo/prisma'
@@ -255,6 +277,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/auth'
     | '/{-$locale}'
     | '/{-$locale}/main/layout'
+    | '/{-$locale}/main/workspaces'
     | '/api/auth/$'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
@@ -268,8 +291,9 @@ export interface FileRouteTypes {
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
     | '/demo/start/ssr'
+    | '/{-$locale}/main/workspaces/$workspaceId/accounts'
     | '/{-$locale}/main/layout/user'
-    | '/{-$locale}/main/layout/workspaces/$workspaceId'
+    | '/{-$locale}/main/workspaces/$workspaceId'
   id:
     | '__root__'
     | '/{-$locale}'
@@ -279,6 +303,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/auth'
     | '/{-$locale}/'
     | '/{-$locale}/main/layout'
+    | '/{-$locale}/main/workspaces'
     | '/api/auth/$'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
@@ -292,8 +317,9 @@ export interface FileRouteTypes {
     | '/demo/start/ssr/full-ssr'
     | '/demo/start/ssr/spa-mode'
     | '/demo/start/ssr/'
+    | '/{-$locale}/main/workspaces/$workspaceId/accounts'
     | '/{-$locale}/main/layout/user/'
-    | '/{-$locale}/main/layout/workspaces/$workspaceId/'
+    | '/{-$locale}/main/workspaces/$workspaceId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -420,6 +446,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/{-$locale}/main/workspaces': {
+      id: '/{-$locale}/main/workspaces'
+      path: '/workspaces'
+      fullPath: '/{-$locale}/main/workspaces'
+      preLoaderRoute: typeof Char123LocaleChar125MainWorkspacesRouteRouteImport
+      parentRoute: typeof Char123LocaleChar125MainRouteRoute
+    }
     '/{-$locale}/main/layout': {
       id: '/{-$locale}/main/layout'
       path: '/layout'
@@ -455,6 +488,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoStartSsrDataOnlyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/{-$locale}/main/workspaces/$workspaceId/': {
+      id: '/{-$locale}/main/workspaces/$workspaceId/'
+      path: '/$workspaceId'
+      fullPath: '/{-$locale}/main/workspaces/$workspaceId'
+      preLoaderRoute: typeof Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125MainWorkspacesRouteRoute
+    }
     '/{-$locale}/main/layout/user/': {
       id: '/{-$locale}/main/layout/user/'
       path: '/user'
@@ -462,27 +502,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125MainLayoutUserIndexRouteImport
       parentRoute: typeof Char123LocaleChar125MainLayoutRouteRoute
     }
-    '/{-$locale}/main/layout/workspaces/$workspaceId/': {
-      id: '/{-$locale}/main/layout/workspaces/$workspaceId/'
-      path: '/workspaces/$workspaceId'
-      fullPath: '/{-$locale}/main/layout/workspaces/$workspaceId'
-      preLoaderRoute: typeof Char123LocaleChar125MainLayoutWorkspacesWorkspaceIdIndexRouteImport
-      parentRoute: typeof Char123LocaleChar125MainLayoutRouteRoute
+    '/{-$locale}/main/workspaces/$workspaceId/accounts': {
+      id: '/{-$locale}/main/workspaces/$workspaceId/accounts'
+      path: '/$workspaceId/accounts'
+      fullPath: '/{-$locale}/main/workspaces/$workspaceId/accounts'
+      preLoaderRoute: typeof Char123LocaleChar125MainWorkspacesWorkspaceIdAccountsRouteImport
+      parentRoute: typeof Char123LocaleChar125MainWorkspacesRouteRoute
     }
   }
 }
 
 interface Char123LocaleChar125MainLayoutRouteRouteChildren {
   Char123LocaleChar125MainLayoutUserIndexRoute: typeof Char123LocaleChar125MainLayoutUserIndexRoute
-  Char123LocaleChar125MainLayoutWorkspacesWorkspaceIdIndexRoute: typeof Char123LocaleChar125MainLayoutWorkspacesWorkspaceIdIndexRoute
 }
 
 const Char123LocaleChar125MainLayoutRouteRouteChildren: Char123LocaleChar125MainLayoutRouteRouteChildren =
   {
     Char123LocaleChar125MainLayoutUserIndexRoute:
       Char123LocaleChar125MainLayoutUserIndexRoute,
-    Char123LocaleChar125MainLayoutWorkspacesWorkspaceIdIndexRoute:
-      Char123LocaleChar125MainLayoutWorkspacesWorkspaceIdIndexRoute,
   }
 
 const Char123LocaleChar125MainLayoutRouteRouteWithChildren =
@@ -490,8 +527,27 @@ const Char123LocaleChar125MainLayoutRouteRouteWithChildren =
     Char123LocaleChar125MainLayoutRouteRouteChildren,
   )
 
+interface Char123LocaleChar125MainWorkspacesRouteRouteChildren {
+  Char123LocaleChar125MainWorkspacesWorkspaceIdAccountsRoute: typeof Char123LocaleChar125MainWorkspacesWorkspaceIdAccountsRoute
+  Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute: typeof Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute
+}
+
+const Char123LocaleChar125MainWorkspacesRouteRouteChildren: Char123LocaleChar125MainWorkspacesRouteRouteChildren =
+  {
+    Char123LocaleChar125MainWorkspacesWorkspaceIdAccountsRoute:
+      Char123LocaleChar125MainWorkspacesWorkspaceIdAccountsRoute,
+    Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute:
+      Char123LocaleChar125MainWorkspacesWorkspaceIdIndexRoute,
+  }
+
+const Char123LocaleChar125MainWorkspacesRouteRouteWithChildren =
+  Char123LocaleChar125MainWorkspacesRouteRoute._addFileChildren(
+    Char123LocaleChar125MainWorkspacesRouteRouteChildren,
+  )
+
 interface Char123LocaleChar125MainRouteRouteChildren {
   Char123LocaleChar125MainLayoutRouteRoute: typeof Char123LocaleChar125MainLayoutRouteRouteWithChildren
+  Char123LocaleChar125MainWorkspacesRouteRoute: typeof Char123LocaleChar125MainWorkspacesRouteRouteWithChildren
   Char123LocaleChar125MainIndexRoute: typeof Char123LocaleChar125MainIndexRoute
 }
 
@@ -499,6 +555,8 @@ const Char123LocaleChar125MainRouteRouteChildren: Char123LocaleChar125MainRouteR
   {
     Char123LocaleChar125MainLayoutRouteRoute:
       Char123LocaleChar125MainLayoutRouteRouteWithChildren,
+    Char123LocaleChar125MainWorkspacesRouteRoute:
+      Char123LocaleChar125MainWorkspacesRouteRouteWithChildren,
     Char123LocaleChar125MainIndexRoute: Char123LocaleChar125MainIndexRoute,
   }
 

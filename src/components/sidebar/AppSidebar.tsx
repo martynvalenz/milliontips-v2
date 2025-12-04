@@ -1,9 +1,7 @@
 "use client";
 
-import { Link } from "@tanstack/react-router";
-import { Image } from "@unpic/react";
 import { cn } from "@/lib/utils";
-import logo from "/img/favicon-180.png";
+import AppSidebarContent from "./AppSidebarContent";
 import { useSidebarWrapper } from "./useSidebarWrapper";
 
 const AppSidebar = () => {
@@ -30,19 +28,7 @@ const AppSidebar = () => {
 			}}
 		>
 			<nav className="flex flex-col h-full">
-				<Link to="/{-$locale}/main">
-					<Image
-						src={logo}
-						alt="Logo"
-						width={isExpanded || isSidebarOpen ? 150 : 35}
-						height={isExpanded || isSidebarOpen ? 100 : 35}
-						className={cn(
-							"mb-4 mt-2 flex hover:opacity-80",
-							isExpanded || isSidebarOpen ? "ml-4" : "mx-auto",
-						)}
-					/>
-				</Link>
-				{/* <AppSidebarContent /> */}
+				<AppSidebarContent />
 			</nav>
 		</aside>
 	);

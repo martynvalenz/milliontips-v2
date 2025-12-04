@@ -15,16 +15,14 @@ export const Route = createFileRoute("/{-$locale}/main/")({
 		const { selectedWorkspace } = context;
 		// *If accessing parent loader promise is tricky in your version, simply call getSelectedWorkspace() again*
 
-		if (selectedWorkspace.workspaceId) {
-			throw redirect({
-				to: "/{-$locale}/main/layout/workspaces/$workspaceId",
-				params: { workspaceId: selectedWorkspace.workspaceId },
-			});
-		} else {
-			throw redirect({
-				to: "/{-$locale}/main/layout/user",
-			});
-		}
+		throw redirect({
+			to: "/{-$locale}/main/workspaces/$workspaceId",
+			params: {
+				workspaceId: selectedWorkspace.workspaceId
+					? selectedWorkspace.workspaceId
+					: "personal",
+			},
+		});
 	},
 	component: () => null, // Renders nothing, just redirects
 });

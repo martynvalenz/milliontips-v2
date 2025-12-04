@@ -28,7 +28,7 @@ function MainLayout() {
 	const { selectedWorkspace } = Route.useRouteContext();
 	return (
 		<WorkspaceProvider
-			initialWorkspaceId={selectedWorkspace.workspaceId || null}
+			initialWorkspaceId={selectedWorkspace.workspaceId || "personal"}
 		>
 			<Outlet />
 		</WorkspaceProvider>

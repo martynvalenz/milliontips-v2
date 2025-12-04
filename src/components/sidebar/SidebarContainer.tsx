@@ -21,6 +21,20 @@ const SidebarContainer = ({ className, ...props }: ComponentProps<"div">) => {
 
 export default SidebarContainer;
 
+const SidebarHeader = ({
+	className,
+	...props
+}: React.ComponentProps<"div">) => {
+	return (
+		<div
+			data-slot="sidebar-header"
+			data-sidebar="header"
+			className={cn("flex flex-col gap-2 p-2", className)}
+			{...props}
+		/>
+	);
+};
+
 const SidebarGroup = ({ className, ...props }: ComponentProps<"div">) => {
 	return (
 		<div
@@ -71,7 +85,7 @@ const SidebarMenuItem = ({ className, ...props }: ComponentProps<"li">) => {
 		<li
 			data-slot="sidebar-menu-item"
 			data-sidebar="menu-item"
-			className={cn("group/menu-item relative", className)}
+			className={cn("group/menu-item relative cursor-pointer", className)}
 			{...props}
 		/>
 	);
@@ -166,6 +180,7 @@ const SidebarMenuSkeleton = ({
 
 export {
 	SidebarGroup,
+	SidebarHeader,
 	SidebarGroupLabel,
 	SidebarMenu,
 	SidebarMenuItem,
