@@ -15,7 +15,6 @@ interface MyRouterContext {
 	queryClient: QueryClient;
 }
 
-// 1. Define the script as a string to avoid hydration mismatches
 // This script checks local storage and system preferences immediately
 const themeScript = `
   (function() {
